@@ -34,7 +34,7 @@ jobs:
       - name: Run tests with Docker Selenium (Chrome)
         run: |
           mkdir artifacts
-          pytest tests/ -v  --browser firefox --html=report.html
+          pytest tests/ --browser firefox -v  --html=report.html
 
       - name: Upload test report and screenshots as artifacts
         uses: actions/upload-artifact@v4
