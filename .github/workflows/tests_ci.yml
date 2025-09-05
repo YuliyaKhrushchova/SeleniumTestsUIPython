@@ -31,16 +31,16 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Check Selenium container status
-        run: docker ps
-
       - name: Run tests with Docker Selenium (Chrome)
         run: |
-          pytest tests/ -v
+          mkdir artifacts
+          pytest tests/ -v  --html=report.html
 
       - name: Upload test report and screenshots as artifacts
         uses: actions/upload-artifact@v4
         with:
           name: test-artifacts
           path: |
-              $GITHUB_WORKSPACE/artifacts/report.html
+            report.html
+            artifacts/*
+          retention-days: 1
