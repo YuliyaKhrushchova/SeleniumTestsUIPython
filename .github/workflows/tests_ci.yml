@@ -21,6 +21,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: my-step
+        run: echo $GITHUB_WORKSPACE
+
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -36,4 +39,12 @@ jobs:
 
       - name: Run tests with Docker Selenium (Chrome)
         run: |
-          pytest tests/ -v
+          pytest tests/ -v  --html=report.html
+
+      - name: Upload test report and screenshots as artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-artifacts
+          path: |
+              $GITHUB_WORKSPACE/report.html
+          retention-days: 5
