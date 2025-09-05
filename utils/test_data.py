@@ -1,0 +1,1 @@
+CREDS = {"email": "juliachruszczowa@gmail.com", "pass": "1456"}

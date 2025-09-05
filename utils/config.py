@@ -1,0 +1,3 @@
+BASE_URL = "http://34.141.58.52:8080/#"
+LOGIN_URL = f'{BASE_URL}/login'
+TIMEOUT = 10
