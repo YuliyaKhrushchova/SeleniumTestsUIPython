@@ -37,11 +37,14 @@ jobs:
       - name: Run tests with Docker Selenium (Chrome)
         run: |
           mkdir artifacts
-          pytest tests/ -v
+          mkdir reports
+          pytest tests/ -v --html=reports/report.html
+          mv report.html $GITHUB_WORKSPACE/reports/
+          mv screenshots/* $GITHUB_WORKSPACE/artifacts/
 
       - name: Upload test report and screenshots as artifacts
         uses: actions/upload-artifact@v4
         with:
           name: test-artifacts
           path: |
-              $GITHUB_WORKSPACE/artifacts/report.html
+              $GITHUB_WORKSPACE/artifacts/
