@@ -6,6 +6,7 @@ from selenium import webdriver
 def browser():
     opts = webdriver.ChromeOptions()
     opts.add_argument("start-maximized")
-    browser = webdriver.Chrome(options=opts)
+    browser = webdriver.Remote(
+            command_executor='http://selenium:4444/wd/hub', options=opts)
     yield browser
     browser.quit()
