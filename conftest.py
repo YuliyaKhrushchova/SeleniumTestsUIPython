@@ -8,6 +8,6 @@ def browser():
     opts.add_argument("--headless")
     opts.add_argument("start-maximized")
     browser = webdriver.Remote(
-            command_executor='http://selenium:4444/wd/hub', options=opts)
+            command_executor='http://localhost:4444', options=opts)
     yield browser
     browser.quit()
