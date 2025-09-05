@@ -33,7 +33,7 @@ jobs:
 
       - name: Run tests with Docker Selenium (Chrome)
         run: |
-          mkdir -p ${{ github.workspace }}/artifacts
+          mkdir artifacts
           pytest tests/ -v  --html=report.html
 
       - name: Upload test report and screenshots as artifacts
