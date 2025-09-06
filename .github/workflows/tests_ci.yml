@@ -14,7 +14,7 @@ jobs:
 
     services:
       selenium:
-        image: selenium/standalone-all-browsers:latest
+        image: selenium/standalone-chrome:latest
         options: --shm-size 2g -p 4444:4444
 
     steps:
@@ -34,7 +34,7 @@ jobs:
       - name: Run tests with Docker Selenium (Chrome)
         run: |
           mkdir artifacts
-          pytest tests/ --browser firefox -v  --html=report.html
+          pytest tests/ -v  --html=report.html
 
       - name: Upload test report and screenshots as artifacts
         uses: actions/upload-artifact@v4
