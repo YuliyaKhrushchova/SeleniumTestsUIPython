@@ -38,7 +38,7 @@ jobs:
           shell: bash
         run: |
           mkdir -p artifacts
-          pytest tests/ -v --md-report
+          pytest tests/ -v --md-report --html=report.html --self-contained-html
 
       - name: Upload test report and screenshots as artifacts
         uses: actions/upload-artifact@v4
@@ -46,5 +46,6 @@ jobs:
         with:
           name: test-artifacts
           path: |
+            ~/report.html
             artifacts/*
           retention-days: 1
