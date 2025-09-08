@@ -18,7 +18,7 @@ def browser():
 def pytest_runtest_makereport(item, call):
     outcome = yield
     report = outcome.get_result()
-    if report.when == "call" and report.failed:
+    if report.when == "call":
         driver = item.funcargs.get("browser")
         if driver:
             screenshot_name = f"artifacts/{item.name}.png"
