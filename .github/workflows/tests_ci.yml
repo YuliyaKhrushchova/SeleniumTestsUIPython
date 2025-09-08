@@ -46,6 +46,6 @@ jobs:
         with:
           name: test-artifacts
           path: |
-            path: test-results/report.html
+            test-results/report.html
             artifacts/*
           retention-days: 1
