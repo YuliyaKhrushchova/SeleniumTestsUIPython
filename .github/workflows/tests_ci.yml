@@ -45,6 +45,6 @@ jobs:
         with:
           name: test-artifacts
           path: |
-            $GITHUB_WORKSPACE\report.html
+            ~/report.html
             artifacts/*
           retention-days: 5
