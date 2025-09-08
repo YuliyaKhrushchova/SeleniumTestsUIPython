@@ -33,20 +33,9 @@ jobs:
           pip install -r requirements.txt
 
       - name: Run tests with Docker Selenium (Chrome)
-        env:
-          REPORT_OUTPUT: md_report.md
-          shell: bash
         run: |
           mkdir artifacts
-          pytest tests/ -v --md-report --md-report-flavor gfm --md-report-exclude-outcomes passed skipped xpassed --md-report-output "$report_file" --html=report.html --self-contained-html
-
-      - name: Render the report to the PR when tests fail
-        uses: marocchino/sticky-pull-request-comment@v2
-        if: failure()
-        with:
-          header: test-report
-          recreate: true
-          path: ${{ env.REPORT_FILE }}
+          pytest tests/ -v --html=report.html --self-contained-html
 
       - name: Upload test report and screenshots as artifacts
         uses: actions/upload-artifact@v4
