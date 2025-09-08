@@ -1,7 +1,7 @@
 import pytest
 
 from pages.login_page import LoginPage
-from utils.config import LOGIN_URL, REGISTER_URL
+from utils.config import LOGIN_URL
 from utils.test_data import VALID_CREDS, INVALID_CREDS
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as es
@@ -27,7 +27,7 @@ class TestLoginPage:
         page.login(INVALID_CREDS["email"], INVALID_CREDS["pass"])
         assert page.is_error_message_visible(), \
             "Error message is not displayed"
-        assert browser.current_url == REGISTER_URL, \
+        assert browser.current_url == LOGIN_URL, \
             f"User is redirected to {browser.current_url} "
         # browser.save_screenshot('./artifacts/login_invalid.png')
 
