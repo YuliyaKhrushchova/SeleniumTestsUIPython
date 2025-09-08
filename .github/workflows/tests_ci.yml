@@ -1,43 +1,107 @@
-name: Selenium Tests
+name: Selenium Tests Run
 
 on:
   push:
     branches:
       - master
+      - development
   pull_request:
     branches:
       - master
+  workflow_dispatch:
 
 jobs:
-  test:
+  smoke:
+    name: Smoke tests
     runs-on: ubuntu-latest
-
+    if: github.event_name == 'push'
     services:
       selenium:
         image: selenium/standalone-chrome:latest
         options: --shm-size 2g -p 4444:4444
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
+      - uses: actions/checkout@v3
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.12'
-
+          python-version: "3.12"
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-
-      - name: Run tests with Docker Selenium (Chrome)
+      - name: Run smoke tests
+        env:
+          REPORT_OUTPUT: md_report.md
+          shell: bash
         run: |
-          mkdir artifacts
-          pytest tests/ -v  --html=report.html
-
+          mkdir -p artifacts
+          pytest tests/ -v -m smoke --md-report --html=report.html --self-contained-html
       - name: Upload test report and screenshots as artifacts
         uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-artifacts
+          path: |
+            report.html
+            artifacts/*
+          retention-days: 1
+  regression:
+    name: Regression tests
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    services:
+      selenium:
+        image: selenium/standalone-chrome:latest
+        options: --shm-size 2g -p 4444:4444
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run regression tests
+        run: |
+          mkdir -p artifacts
+          pytest tests/ -v -m regression --md-report --html=report.html --self-contained-html
+      - name: Upload test report and screenshots as artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-artifacts
+          path: |
+            report.html
+            artifacts/*
+          retention-days: 1
+
+  flaky:
+    name: Flaky tests
+    runs-on: ubuntu-latest
+    if: github.event_name == 'workflow_dispatch'
+    services:
+      selenium:
+        image: selenium/standalone-chrome:latest
+        options: --shm-size 2g -p 4444:4444
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run flaky tests
+        run: |
+          mkdir -p artifacts
+          pytest tests/ -v -m flaky--md-report --html=report.html --self-contained-html
+      - name: Upload test report and screenshots as artifacts
+        uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: test-artifacts
           path: |

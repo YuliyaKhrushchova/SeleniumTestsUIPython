@@ -10,4 +10,15 @@ def browser():
     opts.add_argument("--start-maximized")
     browser = webdriver.Chrome(options=opts)
     yield browser
+    browser.close()
     browser.quit()
+
+
+@pytest.hookimpl(tryfirst=True, hookwrapper=True)
+def pytest_runtest_makereport(item, call):
+    outcome = yield
+    report = outcome.get_result()
+    if report.when == "call" and report.failed:
+        driver = item.funcargs.get("browser")
+        screenshot_name = f"artifacts/{item.name}.png"
+        driver.save_screenshot(screenshot_name)
