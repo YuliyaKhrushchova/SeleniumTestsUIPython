@@ -58,4 +58,17 @@ class TestMainPage:
             card_type = main_page.get_card_type(card)
             assert card_type ==  pet_types, f"incorrect type {card_type}"
 
+    @pytest.mark.smoke
+    @pytest.mark.regression
+    def test_go_to_login_page(self, browser):
+        page = MainPage(browser, BASE_URL)
+        page.open()
+        page.go_to_login_page()
+        # browser.save_screenshot("./artifacts/test_go_to_login_page.png")
 
+    @pytest.mark.smoke
+    @pytest.mark.regression
+    def test_go_register_page(self, browser):
+        page = MainPage(browser, BASE_URL)
+        page.open()
+        page.go_to_register_page()

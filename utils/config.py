@@ -11,5 +11,4 @@ USER1_COOKIES = "session/cookies_user1.json"
 USER1_STORAGE = "session/local_storage_user1.json"
 USER2_COOKIES = "session/cookies_user2.json"
 USER2_STORAGE = "session/local_storage_user2.json"
-
 TIMEOUT = 10

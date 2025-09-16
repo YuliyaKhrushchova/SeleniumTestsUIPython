@@ -16,6 +16,7 @@ class TestRegisterPage:
         page = RegisterPage(browser, REGISTER_URL)
         page.open()
         page.go_to_main_page()
+
         page.wait.until_not(page.es.url_to_be(REGISTER_URL))
         assert browser.current_url == BASE_URL, \
             f"User is redirected to {browser.current_url} "
@@ -49,4 +50,3 @@ class TestRegisterPage:
             "Error message is not displayed"
         assert browser.current_url == REGISTER_URL, \
             f"User is redirected to {browser.current_url} "
-

@@ -22,6 +22,7 @@ class BasePageLocators:
 
 
 
+
 class MainPageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "[href='#/login'] > span")
     REGISTER_LINK = (By.CSS_SELECTOR, "[href='#/register'] > span")
@@ -73,9 +74,11 @@ class ProfilePageLocators:
                           f"@class,'product-list-item')]']")
 
 
+
 class NewPetPageLocators:
     NAME_INPUT = (By.ID, "name")
     AGE_INPUT = (By.ID, "age")
     TYPE_DROPDOWN = (By.ID, "typeSelector")
     GENDER_DROPDOWN = (By.ID, "genderSelector")
     NEW_PET_SUBMIT_BTN = (By.CSS_SELECTOR, f"button[type='Submit']")
+

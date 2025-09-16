@@ -86,7 +86,3 @@ class MainPage(BasePage):
                 self.browser, pet_type)
         option = self.browser.find_element(*option_locator)
         option.click()
-
-
-
-
