@@ -7,7 +7,7 @@ from utils.config import PROFILE_URL, LOGIN_URL
 
 
 class TestProfilePageAuthorized:
-    @pytest.mark.flaky
+
     @pytest.mark.smoke
     @pytest.mark.regression
     def test_logout(self, logged_in_browser):
@@ -17,7 +17,7 @@ class TestProfilePageAuthorized:
                                                       "not displayed")
         assert page.current_url() == LOGIN_URL, f"URL is {page.current_url()} "
 
-    @pytest.mark.flaky
+
     @pytest.mark.regression
     def test_add_pet(self, logged_in_browser_2):
         driver, creds = logged_in_browser_2

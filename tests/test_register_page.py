@@ -36,7 +36,7 @@ class TestRegisterPage:
         assert profile_page.is_list_empty(), ("List of items is not empty for"
                                               " newly created user")
 
-    @pytest.mark.flaky
+
     @pytest.mark.regression
     def test_register_existing_user(self, browser):
         page = RegisterPage(browser, REGISTER_URL)

@@ -66,6 +66,7 @@ jobs:
       - name: Run regression tests
         run: |
           mkdir -p artifacts
+          mkdir -p session
           pytest tests/ -v -m regression --headless --md-report --html=report.html --self-contained-html
       - name: Upload test report and screenshots as artifacts
         uses: actions/upload-artifact@v4
@@ -98,6 +99,7 @@ jobs:
       - name: Run flaky tests
         run: |
           mkdir -p artifacts
+          mkdir -p session
           pytest tests/ -v -m flaky --headless --md-report --html=report.html --self-contained-html
       - name: Upload test report and screenshots as artifacts
         uses: actions/upload-artifact@v4

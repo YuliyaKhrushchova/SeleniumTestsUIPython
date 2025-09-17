@@ -1,12 +1,13 @@
 import json
+import random
 import secrets
 import time
 import string
 import os
-import pickle
+from faker import Faker
 
-LOCAL_STORAGE_FILE = "local_storage.json"
-COOKIES_FILE = "cookies.json"
+fake = Faker()
+
 
 
 def save_local_storage(driver, path):
@@ -42,11 +43,13 @@ def load_cookies(driver, path):
 
 
 def generate_email(prefix):
+    """Generate name"""
     ts = int(time.time())
     return f"{prefix}+{ts}@test.com"
 
 
 def generate_password(length=5):
+    """Generate password"""
     lowers = string.ascii_lowercase
     uppers = string.ascii_uppercase
     digits = string.digits
@@ -67,6 +70,7 @@ def generate_password(length=5):
 
 
 def gen_creds(prefix="at"):
+    """Generate test credentials"""
     print({
         "email": generate_email(prefix),
         "password": generate_password()
@@ -74,4 +78,20 @@ def gen_creds(prefix="at"):
     return {
         "email": generate_email(prefix),
         "password": generate_password()
+    }
+
+def generate_pet_data(owner_email):
+    """Generate test pet data in the same format as NEW_PET_DATA."""
+    pet_types = ["cat", "dog", "parrot", "hamster", "rabbit"]
+    genders = ["Male", "Female"]
+
+    return {
+        "name": fake.first_name(),
+        "type": random.choice(pet_types),
+        "age": random.randint(1, 15),
+        "gender": random.choice(genders),
+        "pic": f"https://picsum.photos/seed/{fake.uuid4()}/300/300",
+        "owner_name": owner_email or fake.email(),
+        "likes_count": 0,
+        "liked_by_user": None,
     }
