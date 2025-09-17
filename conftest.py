@@ -8,7 +8,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 from pages.locators import LoginPageLocators
 from utils.api_helpers import register_user_api
-from utils.config import BASE_URL, LOGIN_URL, USER1_COOKIES, \
+from utils.config import BASE_URL, LOGIN_URL, USER1_COOKIES,\
     USER1_STORAGE, USER2_COOKIES, USER2_STORAGE
 from utils.helpers import (load_local_storage, load_cookies,
                            save_local_storage,

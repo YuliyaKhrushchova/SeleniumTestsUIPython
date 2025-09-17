@@ -79,7 +79,6 @@ class MainPage(BasePage):
         self.wait.until(self.es.visibility_of_element_located(
             BasePageLocators.OPTIONS_PANEL))
 
-        option_locator = BasePageLocators.dropdown_option_by_text(
-            self.browser, pet_type)
+        option_locator = BasePageLocators.dropdown_option_by_text(pet_type)
         option = self.browser.find_element(*option_locator)
         option.click()
