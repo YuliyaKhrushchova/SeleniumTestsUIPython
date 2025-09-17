@@ -3,7 +3,6 @@ name: Selenium Tests Run
 on:
   push:
     branches:
-      - master
       - development
   pull_request:
     branches:
@@ -35,7 +34,8 @@ jobs:
           shell: bash
         run: |
           mkdir -p artifacts
-          pytest tests/ -v -m smoke --md-report --html=report.html --self-contained-html
+          mkdir -p session
+          pytest tests/ -v -m smoke --headless --md-report --html=report.html --self-contained-html
       - name: Upload test report and screenshots as artifacts
         uses: actions/upload-artifact@v4
         if: always()
@@ -66,7 +66,8 @@ jobs:
       - name: Run regression tests
         run: |
           mkdir -p artifacts
-          pytest tests/ -v -m regression --md-report --html=report.html --self-contained-html
+          mkdir -p session
+          pytest tests/ -v -m regression --headless --md-report --html=report.html --self-contained-html
       - name: Upload test report and screenshots as artifacts
         uses: actions/upload-artifact@v4
         if: always()
@@ -98,7 +99,8 @@ jobs:
       - name: Run flaky tests
         run: |
           mkdir -p artifacts
-          pytest tests/ -v -m flaky--md-report --html=report.html --self-contained-html
+          mkdir -p session
+          pytest tests/ -v -m flaky --headless --md-report --html=report.html --self-contained-html
       - name: Upload test report and screenshots as artifacts
         uses: actions/upload-artifact@v4
         if: always()
