@@ -39,10 +39,8 @@ class TestMainPage:
         details_page = DetailsPage(browser, DETAILS_URL)
         details_page.wait_for_content_to_load()
 
-    # @pytest.mark.regression
-    # def test_search_pet_by_name(self, browser, pet_data):
 
-    @pytest.mark.regression
+    @pytest.mark.flake
     @pytest.mark.parametrize("pet_types", ('cat', 'parrot'))
     def test_filter_by_type(self, browser, pet_types):
         main_page = MainPage(browser, BASE_URL)
