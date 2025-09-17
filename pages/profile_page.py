@@ -22,8 +22,9 @@ class ProfilePage(BasePage):
     def is_list_empty(self):
         placeholder = self.browser.find_elements(
             *ProfilePageLocators.NO_RECORDS_PLACEHOLDER)
-        list_items = self.browser.find_elements(*ProfilePageLocators.PET_CARD_ITEM)
-        if len(placeholder) > 0 and len(list_items)==0:
+        list_items = self.browser.find_elements(
+            *ProfilePageLocators.PET_CARD_ITEM)
+        if len(placeholder) > 0 and len(list_items) == 0:
             return True
         else:
             return False

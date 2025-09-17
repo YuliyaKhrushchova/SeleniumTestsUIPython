@@ -1,12 +1,9 @@
 import pytest
 
-from pages.main_page import MainPage
 from pages.profile_page import ProfilePage
 from pages.register_page import RegisterPage
 from utils.config import REGISTER_URL, PROFILE_URL, BASE_URL
 from utils.test_data import VALID_CREDS
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as es
 
 
 class TestRegisterPage:
@@ -49,4 +46,3 @@ class TestRegisterPage:
             "Error message is not displayed"
         assert browser.current_url == REGISTER_URL, \
             f"User is redirected to {browser.current_url} "
-

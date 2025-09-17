@@ -1,7 +1,5 @@
-import time
-
-from .locators import MainPageLocators, BasePageLocators
 from .base_page import BasePage
+from .locators import MainPageLocators, BasePageLocators
 
 
 class MainPage(BasePage):
@@ -10,10 +8,9 @@ class MainPage(BasePage):
         super().open()
         self.wait_for_cards_to_load()
 
-    def wait_for_cards_to_load(self, min_count=1):
+    def wait_for_cards_to_load(self, cnt=1):
         self.wait.until(
-            lambda d: len(d.find_elements(*MainPageLocators.CARD_LIST)) >=
-                      min_count
+            lambda d: len(d.find_elements(*MainPageLocators.CARD_LIST)) >= cnt
         )
 
     def go_to_login_page(self):
@@ -82,11 +79,7 @@ class MainPage(BasePage):
         self.wait.until(self.es.visibility_of_element_located(
             BasePageLocators.OPTIONS_PANEL))
 
-        option_locator=BasePageLocators.dropdown_option_by_text(
-                self.browser, pet_type)
+        option_locator = BasePageLocators.dropdown_option_by_text(
+            self.browser, pet_type)
         option = self.browser.find_element(*option_locator)
         option.click()
-
-
-
-

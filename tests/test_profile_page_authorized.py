@@ -3,7 +3,7 @@ from selenium.webdriver.support import expected_conditions as es
 from selenium.webdriver.support.wait import WebDriverWait
 
 from pages.profile_page import ProfilePage
-from utils.config import PROFILE_URL, BASE_URL, LOGIN_URL
+from utils.config import PROFILE_URL, LOGIN_URL
 
 
 class TestProfilePageAuthorized:

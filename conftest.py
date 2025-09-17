@@ -11,7 +11,7 @@ from utils.api_helpers import register_user_api
 from utils.config import BASE_URL, LOGIN_URL, USER1_COOKIES, \
     USER1_STORAGE, USER2_COOKIES, USER2_STORAGE
 from utils.helpers import (load_local_storage, load_cookies,
-                           save_local_storage, \
+                           save_local_storage,
                            save_cookies, gen_creds)
 from utils.test_data import VALID_CREDS
 
@@ -119,7 +119,7 @@ def pytest_runtest_makereport(item, call):
     if report.when == "call" and report.failed:
         driver = None
 
-        for name, fixture in item.funcargs.items():
+        for _name, fixture in item.funcargs.items():
             if hasattr(fixture, "save_screenshot"):
                 driver = fixture
                 break

@@ -1,5 +1,5 @@
-from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as es
+from selenium.webdriver.support.wait import WebDriverWait
 
 from pages.locators import BasePageLocators
 
@@ -35,5 +35,6 @@ class BasePage:
         return len(popup) > 0
 
     def confirm_popup_action(self):
-        confirm_btn = self.browser.find_element(*BasePageLocators.CONFIRM_POPUP_ACCEPT_BTN)
+        confirm_btn = self.browser.find_element(
+            *BasePageLocators.CONFIRM_POPUP_ACCEPT_BTN)
         confirm_btn.click()

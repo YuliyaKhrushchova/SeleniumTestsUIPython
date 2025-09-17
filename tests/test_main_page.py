@@ -49,13 +49,12 @@ class TestMainPage:
         main_page.open()
         main_page.filter_cards_by_type(pet_types)
 
-        assert main_page.get_filter_type_value()==pet_types, "Incorrect type is selected in filter"
+        assert main_page.get_filter_type_value() == pet_types, \
+            "Incorrect type is selected in filter"
         cards = main_page.get_all_cards()
 
-        assert len(cards)>0, "No Filtering result is displayed"
+        assert len(cards) > 0, "No Filtering result is displayed"
 
         for card in cards:
             card_type = main_page.get_card_type(card)
-            assert card_type ==  pet_types, f"incorrect type {card_type}"
-
-
+            assert card_type == pet_types, f"incorrect type {card_type}"

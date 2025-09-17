@@ -18,8 +18,8 @@ class RegisterPage(BasePage):
             *RegisterPageLocators.REGISTER_PASS_INPUT)
         register_pass_input.send_keys(password)
         self.wait.until(
-            lambda d: len(d.find_elements(*BasePageLocators.PASSWORD_STRENGTH_PANEL)) >
-                      0
+            lambda d: len(
+                d.find_elements(*BasePageLocators.PASS_STRENGTH_PANEL)) > 0
         )
 
     def insert_confirm_pass(self, password):
@@ -27,8 +27,8 @@ class RegisterPage(BasePage):
             *RegisterPageLocators.REGISTER_PASS_CONFIRM_INPUT)
         register_confirm_pass_input.send_keys(password)
         self.wait.until(
-            lambda d: len(d.find_elements(*BasePageLocators.PASSWORD_STRENGTH_PANEL)) >
-                      0
+            lambda d: len(
+                d.find_elements(*BasePageLocators.PASS_STRENGTH_PANEL)) > 0
         )
 
     def submit_registration(self):
@@ -38,7 +38,8 @@ class RegisterPage(BasePage):
         registration_submit_btn.submit()
 
     def close_password_panel(self):
-        element = self.browser.find_element(*BasePageLocators.PASSWORD_STRENGTH_PANEL)
+        element = self.browser.find_element(
+            *BasePageLocators.PASS_STRENGTH_PANEL)
         element.click()
 
     def register(self, user_email, password1, password2):

@@ -8,7 +8,7 @@ class BasePageLocators:
     TOAST_MESSAGE_ERROR = (By.CSS_SELECTOR, ".p-toast .p-toast-message-error")
     BTN = (By.CLASS_NAME, "p-button")
     OPTIONS_PANEL = (By.CLASS_NAME, "p-dropdown-panel")
-    PASSWORD_STRENGTH_PANEL = (By.CLASS_NAME, "p-password-panel")
+    PASS_STRENGTH_PANEL = (By.CLASS_NAME, "p-password-panel")
     CONFIRM_POPUP = (By.CLASS_NAME, "p-confirm-popup")
     CONFIRM_POPUP_ACCEPT_BTN = (By.CSS_SELECTOR,
                                 ".p-confirm-popup "
@@ -19,7 +19,6 @@ class BasePageLocators:
 
     def dropdown_option_by_text(self, option_text):
         return (By.CSS_SELECTOR, f"li[aria-label='{option_text}']")
-
 
 
 class MainPageLocators:
@@ -41,7 +40,7 @@ class DetailsPageLocators:
 class LoginPageLocators:
     LOGIN_EMAIL_INPUT = (By.ID, "login")
     LOGIN_PASS_INPUT = (By.CSS_SELECTOR, "#password > input")
-    PASSWORD_STRENGTH_PANEL = (By.CLASS_NAME, "p-password-panel")
+    PASS_STRENGTH_PANEL = (By.CLASS_NAME, "p-password-panel")
     LOGIN_SUBMIT_BTN = (By.CLASS_NAME, "p-button")
     LOGIN_ERROR_MESSAGE = (By.CLASS_NAME, "p-message-error")
     REGISTER_LINK = (By.CSS_SELECTOR, "[href='#/register'] > span")
@@ -78,4 +77,4 @@ class NewPetPageLocators:
     AGE_INPUT = (By.ID, "age")
     TYPE_DROPDOWN = (By.ID, "typeSelector")
     GENDER_DROPDOWN = (By.ID, "genderSelector")
-    NEW_PET_SUBMIT_BTN = (By.CSS_SELECTOR, f"button[type='Submit']")
+    NEW_PET_SUBMIT_BTN = (By.CSS_SELECTOR, "button[type='Submit']")
