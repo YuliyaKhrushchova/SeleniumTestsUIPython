@@ -2,18 +2,23 @@ import json
 import secrets
 import time
 import string
+import os
+import pickle
 
 LOCAL_STORAGE_FILE = "local_storage.json"
 COOKIES_FILE = "cookies.json"
 
 
 def save_local_storage(driver, path):
+    """Save localStorage content to a JSON file."""
     local_storage = driver.execute_script("return {...localStorage};")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(local_storage, f)
 
 
 def load_local_storage(driver, path):
+    """Load localStorage content from a JSON file."""
     with open(path, "r", encoding="utf-8") as f:
         local_storage = json.load(f)
     for key, value in local_storage.items():
@@ -22,6 +27,7 @@ def load_local_storage(driver, path):
 
 def save_cookies(driver, path):
     """Save cookies to file"""
+    os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump(driver.get_cookies(), f)
 
