@@ -21,6 +21,7 @@ class BasePageLocators:
         return (By.CSS_SELECTOR, f"li[aria-label='{option_text}']")
 
 
+
 class MainPageLocators:
     LOGIN_LINK = (By.CSS_SELECTOR, "[href='#/login'] > span")
     REGISTER_LINK = (By.CSS_SELECTOR, "[href='#/register'] > span")

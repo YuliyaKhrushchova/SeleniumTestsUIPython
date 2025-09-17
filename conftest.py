@@ -111,7 +111,6 @@ def logged_in_browser_2(request):
 def creds():
     return gen_creds()
 
-
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_runtest_makereport(item, call):
     outcome = yield
@@ -133,3 +132,4 @@ def pytest_runtest_makereport(item, call):
             os.makedirs("artifacts", exist_ok=True)
             screenshot_name = f"artifacts/{item.name}.png"
             driver.save_screenshot(screenshot_name)
+

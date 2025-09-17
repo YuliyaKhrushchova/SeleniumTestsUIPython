@@ -16,6 +16,7 @@ class RegisterPage(BasePage):
     def insert_pass(self, password):
         register_pass_input = self.browser.find_element(
             *RegisterPageLocators.REGISTER_PASS_INPUT)
+
         register_pass_input.send_keys(password)
         self.wait.until(
             lambda d: len(
@@ -52,7 +53,9 @@ class RegisterPage(BasePage):
         main_page_link = self.browser.find_element(*BasePageLocators.LOGO)
         main_page_link.click()
 
+
     def is_error_message_visible(self):
         error_message = self.browser.find_elements(
             *RegisterPageLocators.REGISTER_ERROR_MESSAGE)
         return len(error_message) > 0
+
