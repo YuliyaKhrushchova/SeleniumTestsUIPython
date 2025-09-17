@@ -1,3 +1,4 @@
+"""Describes Base Page"""
 from selenium.webdriver.support import expected_conditions as es
 from selenium.webdriver.support.wait import WebDriverWait
 
@@ -5,6 +6,7 @@ from pages.locators import BasePageLocators
 
 
 class BasePage:
+    """Class representing PasePage"""
     def __init__(self, browser, url, timeout=10):
         self.browser = browser
         self.url = url
@@ -14,9 +16,11 @@ class BasePage:
         self.wait = WebDriverWait(self.browser, self.timeout)
 
     def open(self):
+        """ Open page by URL"""
         self.browser.get(self.url)
 
     def current_url(self):
+        """returns current url of page"""
         return self.browser.current_url
 
     def is_error_notification_visible(self):
