@@ -40,7 +40,7 @@ class TestMainPage:
         details_page.wait_for_content_to_load()
 
 
-    @pytest.mark.flake
+    @pytest.mark.flaky
     @pytest.mark.parametrize("pet_types", ('cat', 'parrot'))
     def test_filter_by_type(self, browser, pet_types):
         main_page = MainPage(browser, BASE_URL)
