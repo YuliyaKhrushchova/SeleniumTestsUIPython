@@ -38,7 +38,14 @@ def start_browser(request):
         opts.add_argument("--headless=new")
     opts.add_argument("--window-size=1920,1080")
     opts.add_argument("--start-maximized")
-    driver = webdriver.Chrome(options=opts)
+    selenium_url = os.getenv("SELENIUM_REMOTE_URL")
+    if selenium_url:
+        driver = webdriver.Remote(
+            command_executor=selenium_url,
+            options=opts
+        )
+    else:
+        driver = webdriver.Chrome(options=opts)
     return driver
 
 
